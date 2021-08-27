@@ -1,0 +1,46 @@
+DROP TABLE user_transcation; 
+DROP TABLE user_account; 
+
+
+CREATE TABLE user_account (last_name VARCHAR(30), first_name VARCHAR(30), 
+	street_address VARCHAR(100), 
+	unt VARCHAR(10), 
+	city VARCHAR(30), 
+	state CHAR(2), 
+	zip INT, 
+	dob Date, 
+	ssn VARCHAR(12), 
+	email_address VARCHAR (50), 
+	mobile_number VARCHAR(11),
+	account_number INT  NOT NULL, 
+	PRIMARY KEY (account_number));
+	
+CREATE TABLE user_transcation ( 
+	account_number INT NOT NULL, 
+	transaction_datetime DATETIME, 
+	transaction_amount  DECIMAL(10,2), 
+	post_date DATE, 
+	merchant_number VARCHAR(30), 
+	merchant_description VARCHAR(200), 
+	transaction_state VARCHAR(2), 
+	merchant_category_code INT, 
+	transaction_number INT,
+	FOREIGN KEY (account_number) REFERENCES user_account(account_number)); 
+	
+		
+	
+SELECT merchant_description, AVG(transaction_amount) FROM user_transcation GROUP BY merchant_description; 
+
+
+SELECT * FROM user_account; 
+SELECT * FROM user_transcation; 
+
+
+
+// For tesing only 
+TRUNCATE TABLE user_account; 
+TRUNCATE TABLE user_account; 
+
+
+
+
